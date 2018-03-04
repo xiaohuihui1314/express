@@ -3,7 +3,6 @@ const users = require("../../db/controllers/users"),
     token = require("../../config/token");
 module.exports = router => {
     router
-
         .get('/', (req, res, next) => {
             res.header("Content-Type", "text/html;charset=utf-8");
             res.render('index');
@@ -13,8 +12,14 @@ module.exports = router => {
                 code: "token有效！"
             });
         })
+        .get('/jsonp', (req, res, next) => {
+            console.log(req.query);
+            res.send('jsonpFun(' + JSON.stringify({
+                    code: "token有效！"
+                }) + ')');
+        })
         .get('/test', (req, res, next) => {
-            setTimeout(function () {
+            setTimeout(function() {
                 res.json({
                     data: "这是成功的数据哦！",
                     code: 200,
@@ -30,7 +35,7 @@ module.exports = router => {
         .get("/getAllFriend", friend.getAllFriend)
         .get("/verifyToken", token.verifyToken, (req, res, next) => {
             res.json({
-                message:'验证成功！'
+                message: '验证成功！'
             });
         })
         .get("/downloads", (req, res, next) => {
