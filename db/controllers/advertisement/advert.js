@@ -16,6 +16,7 @@ exports.getAdvert = (req, res) => {
                 docs.forEach(function(item) {
                     let obj = {};
                     obj.addressName = item.adsenseId.name;
+                    obj.adsenseId = item.adsenseId._id;
                     obj.describe = item.describe;
                     obj.startTime = item.startTime;
                     obj.endTime = item.endTime;
