@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'),
-    Advert = mongoose.model('Advert');
+    Advert = mongoose.model('Advert'),
+    utils = require('../../../utils');
 // 查看广告
 exports.getAdvert = (req, res) => {
     Advert.find({})
@@ -18,8 +19,8 @@ exports.getAdvert = (req, res) => {
                     obj.addressName = item.adsenseId.name;
                     obj.adsenseId = item.adsenseId._id;
                     obj.describe = item.describe;
-                    obj.startTime = item.startTime;
-                    obj.endTime = item.endTime;
+                    obj.startTime = utils.timeStamp(item.startTime);
+                    obj.endTime = utils.timeStamp(item.endTime);
                     obj.link = item.link;
                     obj.sort = item.sort;
                     obj.state = item.state;
